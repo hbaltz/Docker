@@ -5,7 +5,7 @@ Notes créées à partir du cours de tcoupin lien ci-dessous
 ## Sites utiles 
 [Play with docker](http://play-with-docker.com)  
 [Hub docker](https://hub.docker.com/)  
-[Cours tcoupin](https://tcoupin.github.io/presentations/docker-intro) 
+[Cours tcoupin](https://tcoupin.github.io/presentations/docker-intro)  
 [Command lines docker](https://docs.docker.com/engine/reference/commandline/docker/)  
 
 ## CMD utiles
