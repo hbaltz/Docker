@@ -110,3 +110,8 @@ docker run --net bridge "Nom_conteneur"
 ```
 docker run --rm -p PORT-HOTE:PORT-CONTENEUR httpd:alpine
 ```
+
+## Volume
+```
+docker run -v LOCAL_PATH:PATH_ON_CONTAINER:MODE "Nom_conteneur"
+```
