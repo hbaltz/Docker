@@ -1,11 +1,11 @@
 # Docker 
 
 ## Sites utiles 
-[http://play-with-docker.com](http://play-with-docker.com)  
-[https://hub.docker.com/](https://hub.docker.com/) 
-[https://tcoupin.github.io/presentations/docker-intro](https://tcoupin.github.io/presentations/docker-intro) 
+[Play with docker](http://play-with-docker.com)  
+[Hub docker](https://hub.docker.com/)  
+[Cours tcoupin](https://tcoupin.github.io/presentations/docker-intro) 
 
-## CMD 
+## CMD utiles
 
 ### Lister les images locales
 ```
@@ -30,4 +30,14 @@ docker rmi "Nom_image"
 ### Construire une image avec un Dockerfile
 ```
 docker build "DOCKERFILE_PATH"
+```
+
+### (Re)Nommer/tagguer une image
+```
+docker tag IMAGE-NAME:TAG NEW_IMAGE-NAME:NEW_TAG
+```
+
+### Voir les métadonnées d’une image
+```
+docker inspect "Nom_image"
 ```
