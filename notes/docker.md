@@ -46,7 +46,7 @@ docker tag IMAGE-NAME:TAG NEW_IMAGE-NAME:NEW_TAG
 docker inspect "Nom_image"
 ```
 
-## Conteneur
+## CMD conteneur
 
 ### Démarrer un conteneur
 ```
