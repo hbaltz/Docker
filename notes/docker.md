@@ -7,8 +7,9 @@ Notes créées à partir du cours de tcoupin lien ci-dessous
 [Hub docker](https://hub.docker.com/)  
 [Cours tcoupin](https://tcoupin.github.io/presentations/docker-intro)  
 [Command lines docker](https://docs.docker.com/engine/reference/commandline/docker/)  
+[Dockerfiles doc](https://docs.docker.com/engine/reference/builder/)   
 
-## CMD utiles
+## Images
 
 ### Lister les images locales
 ```
@@ -45,7 +46,7 @@ docker tag IMAGE-NAME:TAG NEW_IMAGE-NAME:NEW_TAG
 docker inspect "Nom_image"
 ```
 
-## CMD conteneur
+## Conteneur
 
 ### Démarrer un conteneur
 ```
@@ -114,5 +115,47 @@ docker run --rm -p PORT-HOTE:PORT-CONTENEUR httpd:alpine
 ## Volume
 ```
 docker run -v LOCAL_PATH:PATH_ON_CONTAINER:MODE "Nom_conteneur"
+```
+
+## Volume docker
+
+### Lister les volumes
+```
+docker volume ls
+```
+
+### Créer un volume
+```
+docker volume create --name NAME [OPTS]
+```
+
+### Créer un volume lors de la création d’un conteneur
+```
+docker run -v [NAME]:[PATH_ON_CONTAINER]:[OPTS] "Nom_conteneur"
+```
+
+### Supprimer un volume
+```
+docker volume rm NAME
+```
+
+### Supprimer un volume lors de la suppression d’un conteneur 
+
+Ne concerne que les volumes créés automatiquement par les métadonnées d’une image.  
+
+```
+docker rm -v CONTAINER_NAME
+```
+
+## Dockerfiles
+
+### Construire une image avec un Dockerfile
+```
+docker build DOCKERFILE_PATH
+```
+
+### Paramétriser le Dockerfile
+```
+docker build --build-arg name=value .
 ```
 
