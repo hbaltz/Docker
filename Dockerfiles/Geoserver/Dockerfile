@@ -1,17 +1,14 @@
 FROM mcpayment/ubuntu1404
 MAINTAINER Hugo Baltz <hugo.baltz@gmail.com>
 
-RUN  export DEBIAN_FRONTEND=noninteractive
-ENV DEBIAN_FRONTEND noninteractive
+# Expose le port 8080
+EXPOSE 8080
 
+# Pour le apt-get
 ENV http_proxy http://10.0.4.2:3128
 ENV https_proxy https://10.0.4.2:3128
 
-ENV GS_VERSION 2.10.1
-ENV GEOSERVER_DATA_DIR /opt/geoserver/data_dir
-
-RUN mkdir -p $GEOSERVER_DATA_DIR && mkdir geoserver/
-
+# Installation java :
 RUN apt-get update -y && \
     apt-get install -y software-properties-common && \ 
     apt-add-repository ppa:webupd8team/java && \
@@ -26,9 +23,13 @@ RUN apt-get update -y && \
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-ADD https://downloads.sourceforge.net/project/geoserver/GeoServer/2.10.1/geoserver-2.10.1-bin.zip?r=http%3A%2F%2Fgeoserver.org%2Frelease%2Fstable%2F&ts=1487150943&use_mirror=vorboss geoserver/
+# Installation geoserver
+ARG GS_VERSION=2.10.1
+ENV GEOSERVER_DATA_DIR /opt/geoserver/data_dir
+VOLUME opt/geoserver/geoserver-${GS_VERSION}/data_dir
 
-RUN unzip geoserver/geoserver-2.10.1-bin.zip -d /opt/geoserver/ && echo "export GEOSERVER_HOME=/opt/geoserver" >> ~/.profile  && chmod +x /opt/geoserver/bin/startup.sh
+ADD https://downloads.sourceforge.net/project/geoserver/GeoServer/${GS_VERSION}/geoserver-${GS_VERSION}-bin.zip?r=http%3A%2F%2Fgeoserver.org%2Frelease%2Fstable%2F&ts=1487150943&use_mirror=vorboss geoserver/
 
-EXPOSE 8080
-CMD /opt/geoserver/geoserver-2.10.1/bin/startup.sh
+RUN unzip geoserver/geoserver-${GS_VERSION}-bin.zip -d /opt/geoserver/ && echo "export GEOSERVER_HOME=/opt/geoserver" >> ~/.profile  && chmod +x /opt/geoserver/geoserver-${GS_VERSION}/bin/startup.sh && rm -R geoserver/geoserver-${GS_VERSION}-bin.zip
+
+CMD /opt/geoserver/geoserver-${GS_VERSION}/bin/startup.sh
