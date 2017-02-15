@@ -73,6 +73,11 @@ docker ps -a
 docker rm "Nom_conteneur"
 ```
 
+### Supprimer tous les conteneurs
+```
+docker rm $(docker ps -a -q)
+```
+
 #### Options utiles
 * –name : donner un nom au conteneur  
 * -i : interactif  

@@ -4,7 +4,7 @@ Notes créées à partir du cours de tcoupin lien ci-dessous
 
 ## Sites utiles 
 [Cours tcoupin](https://tcoupin.github.io/presentations/docker-compose/#/)  
-[Doc compose](https://docs.docker.com/compose/reference/) 
+[Doc compose](https://docs.docker.com/compose/reference/)  
 [Doc install docker-compose](https://docs.docker.com/compose/install/)   
 
 ## Commandes utiles
