@@ -1,13 +1,3 @@
-# ownCloud with MariaDB/MySQL
-#
-# Access via "http://localhost:8080" (or "http://$(docker-machine ip):8080" if using docker-machine)
-#
-# During initial ownCloud setup, select "Storage & database" --> "Configure the database" --> "MySQL/MariaDB"
-# Database user: root
-# Database password: example
-# Database name: pick any name
-# Database host: replace "localhost" with "mysql"
-
 version: '3'
 
 services:
@@ -20,13 +10,19 @@ services:
       traefik.backend: "owncloud"
     depends_on: 
       - lb
+    volumes:
+      - /home/prof/tp_asi_ensg/owncloud/data:/var/www/html/data 
+      - /home/prof/tp_asi_ensg/owncloud/config:/var/www/html/config #Save the config
 
-  mysql:
+  cloud-db:
     image: mariadb
     volumes:
-      - /home/prof/tp_asi_ensg:/etc/mysql/conf.d 
+      - /home/prof/tp_asi_ensg/my_sql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: owncloud
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
 
   lb:
     image: traefik

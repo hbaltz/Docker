@@ -20,6 +20,6 @@ services:
   mysql:
     image: mariadb
     volumes:
-      - /home/prof/tp_asi_ensg:/etc/mysql/conf.d 
+      - /home/prof/tp_asi_ensg:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
