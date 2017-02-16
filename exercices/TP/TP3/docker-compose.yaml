@@ -8,14 +8,18 @@
 # Database name: pick any name
 # Database host: replace "localhost" with "mysql"
 
-version: '2'
+version: '3'
 
 services:
 
   owncloud:
     image: owncloud
-    ports:
-      - 8080:80
+    labels:
+      traefik.port: "80"
+      traefik.frontend.rule: "Host:127.0.0.1,localhost"
+      traefik.backend: "owncloud"
+    depends_on: 
+      - lb
 
   mysql:
     image: mariadb
@@ -23,3 +27,14 @@ services:
       - /home/prof/tp_asi_ensg:/etc/mysql/conf.d 
     environment:
       MYSQL_ROOT_PASSWORD: example
+
+  lb:
+    image: traefik
+    ports:
+      - "8080:8080"
+      - "8081:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      traefik.enable: "false"
+    command: --docker --docker.watch 
